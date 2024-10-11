@@ -11,6 +11,6 @@ export class WallService {
   constructor(private http: HttpClient) { }
 
   getInformation(): Observable<GitlabProjectsResponse> {
-    return this.http.get<GitlabProjectsResponse>('/api/gitlab/branch');
+    return this.http.get<GitlabProjectsResponse>('/api/wall/branch');
   }
 }
