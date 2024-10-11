@@ -1,0 +1,30 @@
+.card-container {
+  width: 500px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding: 16px;
+  margin: 16px;
+
+  .waiting-pipeline {
+    color: orange;
+    font-weight: bold;
+  }
+
+  .success-pipeline {
+    color: greenyellow;
+    font-weight: bold;
+  }
+
+  .pending-pipeline {
+    font-weight: bold;
+  }
+
+  .failed-pipeline {
+    color: red;
+    font-weight: bold;
+  }
+
+  a {
+    color: #CDCDCD;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="card-container">
+  <h3>{{title}}</h3>
+  @for (line of data; track line) {
+    <div class="card-content">
+      @if (line.status == "success") {
+        <div>Branch: <span>{{line.branchName}}</span> | Status: <span class="success-pipeline">{{line.status}}</span></div>
+        <mat-progress-bar type="determinate" value="100"></mat-progress-bar>
+        <div class="card-footer">
+          <p>Pipeline: <a [href]="getPipelineLink(line.pipelineNumber)">#{{line.pipelineNumber}}</a></p>
+        </div>
+      }
+
+      @if (line.status == "manual") {
+        <div>Branch: <span>{{line.branchName}}</span> | Status : <span class="waiting-pipeline">{{line.status}}</span> </div>
+        <mat-progress-bar type="determinate" value="90"></mat-progress-bar>
+        <div class="card-footer">
+          <p>Pipeline: <a [href]="getPipelineLink(line.pipelineNumber)">#{{line.pipelineNumber}}</a></p>
+        </div>
+      }
+
+      @if (line.status == "pending" || line.status == "running") {
+        <div>Branch: <span>{{line.branchName}}</span> | Status : <span class="pending-pipeline">{{line.status}}</span> </div>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <div class="card-footer">
+          <p>Pipeline: <a [href]="getPipelineLink(line.pipelineNumber)">#{{line.pipelineNumber}}</a></p>
+        </div>
+      }
+
+      @if (line.status == "failed") {
+        <div>Branch: <span>{{line.branchName}}</span> | Status : <span class="failed-pipeline">{{line.status}}</span> </div>
+        <mat-progress-bar type="determinate" value="0" color="error"></mat-progress-bar>
+        <div class="card-footer">
+          <p>Pipeline: <a [href]="getPipelineLink(line.pipelineNumber)">#{{line.pipelineNumber}}</a></p>
+        </div>
+      }
+    </div>
+  }
+</div>
