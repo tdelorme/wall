@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CardComponent} from "../component/card/card.component";
-import {GitlabProjectsResponse} from "../model/gitlab.projects.response.model";
 import {WallService} from "./wall.service";
-import {interval} from "rxjs";
+import {interval, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-wall',
@@ -13,17 +12,9 @@ import {interval} from "rxjs";
   templateUrl: './wall.component.html',
   styleUrl: './wall.component.scss'
 })
-export class WallComponent implements OnInit {
-  public datasource!: GitlabProjectsResponse;
+export class WallComponent {
+  datasource$ = interval(15000).pipe(switchMap(() => this.wallService.getInformation()));
 
   constructor(private wallService: WallService) {
-  }
-
-  ngOnInit() {
-    this.wallService.getInformation().subscribe(value => this.datasource = value);
-    interval(15000).subscribe(() => {
-      this.wallService.getInformation().subscribe(value => this.datasource = value);
-    });
-
   }
 }

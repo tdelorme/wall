@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="datasource$ | async; let datasource;">
 
     <app-card [data]="datasource.parent" [title]="'parent'"></app-card>
     <app-card [data]="datasource.commons" [title]="'commons'"></app-card>
